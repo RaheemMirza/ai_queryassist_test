@@ -24,9 +24,9 @@ app.use((err, _req, res, _next) => {
 });
 
 async function start() {
-  if (!process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY.includes('your-key-here')) {
-    console.warn('⚠️  ANTHROPIC_API_KEY is not set in .env — SQL generation will fail until you add a real key.');
-  }
+  if (!process.env.GITHUB_MODELS_TOKEN) {
+  console.warn('⚠️  GITHUB_MODELS_TOKEN is not set in .env — SQL generation will fail until you add one.');
+}
 
   console.log('Building demo database (schemaDefinition.js + seedData.js)...');
   await initDatabase();

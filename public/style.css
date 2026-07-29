@@ -353,7 +353,100 @@ table.results-table tr:hover td {
 .statement-card-body {
   padding: 16px;
 }
+/* --- Chat thread (SQL Generator page) --- */
+.chat-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 4px;
+}
 
+.msg {
+  max-width: 78%;
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.msg-user {
+  align-self: flex-end;
+  background: var(--blue);
+  color: white;
+  border-radius: 12px 12px 3px 12px;
+}
+
+.msg-assistant-text {
+  align-self: flex-start;
+  background: var(--gray-100);
+  color: var(--gray-900);
+  border-radius: 12px 12px 12px 3px;
+}
+
+.msg-loading {
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spinner-dark {
+  border: 2px solid rgba(17, 24, 39, 0.15);
+  border-top-color: var(--gray-700);
+}
+
+.sql-response-card {
+  align-self: stretch;
+  max-width: 100%;
+}
+
+.sql-card-results {
+  margin-top: 14px;
+}
+.scalar-answer {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  background: var(--blue-light);
+  border: 1px solid #DBEAFE;
+  border-radius: 6px;
+  padding: 16px 18px;
+}
+
+.scalar-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.scalar-label {
+  font-size: 12px;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+/* --- Chat input bar (SQL Generator page) --- */
+.chat-input-bar {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  position: sticky;
+  bottom: 16px;
+  background: var(--gray-50);
+  padding-top: 8px;
+}
+
+.chat-input-bar textarea {
+  flex: 1;
+  resize: none;
+  max-height: 140px;
+  min-height: 42px;
+}
 /* --- Misc --- */
 .spinner {
   display: inline-block;

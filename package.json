@@ -9,9 +9,9 @@
     "reseed": "node db/reseed.js"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.32.1",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.0",
-    "sql.js": "^1.11.0"
-  }
+  "dotenv": "^16.4.5",
+  "express": "^4.21.0",
+  "openai": "^4.67.0",
+  "sql.js": "^1.11.0"
+}
 }

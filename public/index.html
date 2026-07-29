@@ -21,25 +21,20 @@
   <main class="page">
     <div class="page-header">
       <h1>SQL Generator</h1>
-      <p>Ask a question in plain English. The assistant generates SQL against the demo Asset Management schema.</p>
+      <p>Chat with the assistant about your Asset Management data. It'll generate SQL when you're asking for data — otherwise it'll just talk with you.</p>
     </div>
 
     <div id="sample-chips" class="chip-row"></div>
 
-    <div class="card">
-      <label for="prompt-input">Your question</label>
-      <textarea id="prompt-input" rows="3" placeholder="e.g. Show all active assets purchased after January 2025"></textarea>
-      <div class="btn-row">
-        <button id="ask-btn" class="btn btn-primary">
-          <span id="ask-spinner" class="spinner hidden"></span>
-          Generate SQL
-        </button>
-      </div>
-    </div>
+    <div id="chat-thread" class="chat-thread"></div>
 
-    <div id="generation-result"></div>
-
-    <div id="execution-result"></div>
+    <form id="chat-form" class="chat-input-bar">
+      <textarea id="prompt-input" rows="1" placeholder="Ask a question, or just say hi…"></textarea>
+      <button id="ask-btn" type="submit" class="btn btn-primary">
+        <span id="ask-spinner" class="spinner hidden"></span>
+        Send
+      </button>
+    </form>
   </main>
 
   <script src="/generate.js"></script>

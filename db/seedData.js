@@ -6,12 +6,30 @@
  * data, or add a new key here to match a new table you added to
  * schemaDefinition.js.
  *
- * PS_ASSET and PS_DEPRECIATION are generated programmatically below (so
- * there's a decent amount of realistic-looking data), but you're welcome to
- * replace `generateAssets()` with a hard-coded array if you'd rather curate
- * it by hand.
+ * PS_ASSET and PS_DEPRECIATION are generated programmatically below using a
+ * SEEDED random number generator — this means the "random" data is actually
+ * reproducible: every server restart generates the exact same 60 assets,
+ * so query results stay consistent across restarts. Change SEED below if
+ * you ever want a different (but still reproducible) data set.
  * ---------------------------------------------------------------------------
  */
+
+const SEED = 42;
+
+// Small seeded PRNG (mulberry32). Deterministic: the same seed always
+// produces the same sequence of numbers, unlike Math.random().
+function createSeededRandom(seed) {
+  let state = seed;
+  return function random() {
+    state |= 0;
+    state = (state + 0x6d2b79f5) | 0;
+    let t = Math.imul(state ^ (state >>> 15), 1 | state);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+const random = createSeededRandom(SEED);
 
 const businessUnits = [
   { BUSINESS_UNIT: 'US001', DESCR: 'US Corporate HQ', CURRENCY_CD: 'USD' },
@@ -44,13 +62,13 @@ const descriptionsByCategory = {
 };
 
 function randomFrom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+  return arr[Math.floor(random() * arr.length)];
 }
 
 function randomDateWithinLastYears(years) {
   const now = new Date();
   const past = new Date(now.getFullYear() - years, now.getMonth(), now.getDate());
-  const date = new Date(past.getTime() + Math.random() * (now.getTime() - past.getTime()));
+  const date = new Date(past.getTime() + random() * (now.getTime() - past.getTime()));
   return date.toISOString().slice(0, 10); // "YYYY-MM-DD"
 }
 
@@ -73,10 +91,10 @@ function generateAssets(count = 60) {
     const location = randomFrom(locations);
     const descr = randomFrom(descriptionsByCategory[category.CATEGORY]);
     const acquisitionDt = randomDateWithinLastYears(3);
-    const cost = round2(500 + Math.random() * 60000);
+    const cost = round2(500 + random() * 60000);
 
     // ~15% disposed, ~5% retired, rest in service
-    const roll = Math.random();
+    const roll = random();
     const status = roll < 0.15 ? 'DISPOSED' : roll < 0.2 ? 'RETIRED' : 'IN_SERVICE';
 
     const assetId = `A${String(i).padStart(5, '0')}`;
@@ -96,7 +114,7 @@ function generateAssets(count = 60) {
 
     // ~75% of in-service/retired assets have depreciation rows;
     // the rest intentionally have none (for "assets without depreciation" queries).
-    const shouldDepreciate = status !== 'DISPOSED' && Math.random() < 0.75;
+    const shouldDepreciate = status !== 'DISPOSED' && random() < 0.75;
     if (shouldDepreciate) {
       const usefulLifeMonths = category.USEFUL_LIFE * 12;
       const monthlyDepr = round2(cost / usefulLifeMonths);
