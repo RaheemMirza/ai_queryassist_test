@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Generator — PS AM Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav class="topbar">
+    <div class="topbar-brand"><span class="dot"></span> PS AM SQL Assistant</div>
+    <div class="topbar-nav">
+      <a href="/index.html" class="active">SQL Generator</a>
+      <a href="/impact.html">Impact Analyzer</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="page-header">
+      <h1>SQL Generator</h1>
+      <p>Ask a question in plain English. The assistant generates SQL against the demo Asset Management schema.</p>
+    </div>
+
+    <div id="sample-chips" class="chip-row"></div>
+
+    <div class="card">
+      <label for="prompt-input">Your question</label>
+      <textarea id="prompt-input" rows="3" placeholder="e.g. Show all active assets purchased after January 2025"></textarea>
+      <div class="btn-row">
+        <button id="ask-btn" class="btn btn-primary">
+          <span id="ask-spinner" class="spinner hidden"></span>
+          Generate SQL
+        </button>
+      </div>
+    </div>
+
+    <div id="generation-result"></div>
+
+    <div id="execution-result"></div>
+  </main>
+
+  <script src="/generate.js"></script>
+</body>
+</html>

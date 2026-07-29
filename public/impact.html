@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impact Analyzer — PS AM Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav class="topbar">
+    <div class="topbar-brand"><span class="dot"></span> PS AM SQL Assistant</div>
+    <div class="topbar-nav">
+      <a href="/index.html">SQL Generator</a>
+      <a href="/impact.html" class="active">Impact Analyzer</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="page-header">
+      <h1>Impact Analyzer</h1>
+      <p>Paste one or more SQL statements. Every statement runs inside a transaction that is always rolled back — nothing is ever permanently changed.</p>
+    </div>
+
+    <div class="card">
+      <label for="sql-input">SQL to analyze</label>
+      <textarea id="sql-input" class="sql-input" rows="8" placeholder="SELECT * FROM PS_ASSET WHERE ASSET_STATUS = 'IN_SERVICE';&#10;UPDATE PS_ASSET SET ASSET_STATUS = 'RETIRED' WHERE ASSET_ID = 'A00001';"></textarea>
+      <div class="btn-row">
+        <button id="analyze-btn" class="btn btn-primary">
+          <span id="analyze-spinner" class="spinner hidden"></span>
+          Analyze impact
+        </button>
+        <button id="clear-btn" class="btn btn-secondary">Clear</button>
+      </div>
+      <div class="callout callout-info">
+        This is a sandbox: SELECT, INSERT, UPDATE, DELETE — even DROP or ALTER — can all be pasted here safely.
+        Every statement is executed inside a transaction that is rolled back immediately after analysis, so the demo
+        database is never actually modified.
+      </div>
+    </div>
+
+    <div id="analysis-result"></div>
+  </main>
+
+  <script src="/impact.js"></script>
+</body>
+</html>

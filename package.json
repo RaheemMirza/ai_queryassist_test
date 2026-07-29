@@ -1,0 +1,17 @@
+{
+  "name": "ps-am-sql-assistant",
+  "version": "1.0.0",
+  "description": "Simple AI SQL Generator and Impact Analyzer demo for PeopleSoft Asset Management data",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "reseed": "node db/reseed.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "sql.js": "^1.11.0"
+  }
+}
