@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>History — PS AM Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav class="topbar">
+    <div class="topbar-brand"><span class="dot"></span> PS AM SQL Assistant</div>
+    <div class="topbar-nav">
+      <a href="/index.html">SQL Generator</a>
+      <a href="/impact.html">Impact Analyzer</a>
+      <a href="/saved.html">Saved Queries</a>
+      <a href="/history.html" class="active">History</a>
+    </div>
+  </nav>
+
+  <main class="page" style="max-width:1100px;">
+    <div class="page-header">
+      <h1>History</h1>
+      <p>Every conversation is saved automatically — pick one below to review it.</p>
+    </div>
+
+    <div class="history-layout">
+      <div id="conversation-list" class="card conversation-list"></div>
+      <div id="conversation-detail" class="card">
+        <div class="empty-state">Select a conversation on the left to view it.</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/history.js"></script>
+</body>
+</html>

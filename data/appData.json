@@ -1,0 +1,151 @@
+{
+  "conversations": {
+    "c01b528f-bfa3-46a7-841b-b70bad7d596a": {
+      "createdAt": "2026-07-30T06:55:54.427Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Show all active assets purchased after January 2025",
+          "createdAt": "2026-07-30T06:55:54.427Z"
+        },
+        {
+          "role": "assistant",
+          "type": "sql",
+          "reply": "Here's a query for that.",
+          "sql": "SELECT * FROM PS_ASSET WHERE ASSET_STATUS = 'Active' AND ACQUISITION_DT > '2025-01-01';",
+          "explanation": "This query selects all columns from the PS_ASSET table where the asset status is 'Active' and the acquisition date is after January 1, 2025. It retrieves the relevant assets that meet these criteria.",
+          "confidenceScore": 1,
+          "tablesInvolved": [
+            "PS_ASSET"
+          ],
+          "keyword": "SELECT",
+          "riskLevel": "LOW",
+          "rowCount": 0,
+          "rowsAffected": null,
+          "createdAt": "2026-07-30T06:55:58.561Z"
+        }
+      ]
+    },
+    "ee14eecd-f005-40c2-b3fd-f892cee7d79f": {
+      "createdAt": "2026-07-30T06:58:11.973Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "UPDATE COST OF ALL ASSETS BY 10000",
+          "createdAt": "2026-07-30T06:58:11.973Z"
+        },
+        {
+          "role": "assistant",
+          "type": "sql",
+          "reply": "Here's an update statement for that.",
+          "sql": "UPDATE PS_ASSET SET COST = COST + 10000",
+          "explanation": "This SQL statement updates the COST of all assets in the PS_ASSET table by increasing it by 10,000. It does not filter any rows, so every asset will have its cost adjusted accordingly.",
+          "confidenceScore": 1,
+          "tablesInvolved": [
+            "PS_ASSET"
+          ],
+          "keyword": "UPDATE",
+          "riskLevel": "MEDIUM",
+          "rowCount": 0,
+          "rowsAffected": 60,
+          "createdAt": "2026-07-30T06:58:15.865Z"
+        }
+      ]
+    },
+    "0d0370d0-f43b-4c43-af3a-5944cf9edd0b": {
+      "createdAt": "2026-07-30T09:48:07.784Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "what are the available tables ?",
+          "createdAt": "2026-07-30T09:48:07.784Z"
+        },
+        {
+          "role": "assistant",
+          "type": "chat",
+          "reply": "The available tables in the database are PS_BU_TBL, PS_LOCATION_TBL, PS_CATEGORY_TBL, PS_ASSET, and PS_DEPRECIATION. Each one serves a specific purpose related to asset management.",
+          "createdAt": "2026-07-30T09:48:10.784Z"
+        },
+        {
+          "role": "user",
+          "content": "select assets with cost more than 20000 and from HYD01",
+          "createdAt": "2026-07-30T09:52:34.815Z"
+        },
+        {
+          "role": "assistant",
+          "type": "sql",
+          "reply": "Here's a query for that.",
+          "sql": "SELECT * FROM PS_ASSET WHERE COST > 20000 AND LOCATION = 'HYD01'",
+          "explanation": "This query retrieves all columns from the PS_ASSET table where the asset's cost is greater than 20,000 and the asset is located in the location identified by 'HYD01'. It filters assets based on their cost and physical location.",
+          "confidenceScore": 1,
+          "tablesInvolved": [
+            "PS_ASSET"
+          ],
+          "keyword": "SELECT",
+          "riskLevel": "LOW",
+          "rowCount": 6,
+          "rowsAffected": null,
+          "createdAt": "2026-07-30T09:52:39.803Z"
+        },
+        {
+          "role": "user",
+          "content": "select from businessunit US001 only",
+          "createdAt": "2026-07-30T09:53:48.234Z"
+        },
+        {
+          "role": "assistant",
+          "type": "sql",
+          "reply": "Here's a query for that.",
+          "sql": "SELECT * FROM PS_ASSET WHERE BUSINESS_UNIT = 'US001'",
+          "explanation": "This query selects all columns from the PS_ASSET table for assets that belong to the business unit 'US001'. It filters the results to only show assets associated with that specific business unit.",
+          "confidenceScore": 0.9,
+          "tablesInvolved": [
+            "PS_ASSET"
+          ],
+          "keyword": "SELECT",
+          "riskLevel": "LOW",
+          "rowCount": 15,
+          "rowsAffected": null,
+          "createdAt": "2026-07-30T09:53:51.022Z"
+        }
+      ]
+    },
+    "862f7c40-25f4-4b5d-bece-34b389c03152": {
+      "createdAt": "2026-07-30T10:31:16.921Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Show assets located in Hyderabad",
+          "createdAt": "2026-07-30T10:31:16.921Z"
+        },
+        {
+          "role": "assistant",
+          "type": "sql",
+          "reply": "Here's a query to retrieve assets located in Hyderabad.",
+          "sql": "SELECT A.ASSET_ID, A.TAG_NUMBER, A.DESCR, A.COST, A.CURRENCY_CD FROM PS_ASSET A JOIN PS_LOCATION_TBL L ON A.LOCATION = L.LOCATION WHERE L.CITY = 'Hyderabad';",
+          "explanation": "This query selects asset details such as asset ID, tag number, description, cost, and currency code for assets located in the city of Hyderabad. It retrieves data from the PS_ASSET table and joins it with the PS_LOCATION_TBL to filter assets based on the specified city. The join condition is based on the LOCATION column.",
+          "confidenceScore": 1,
+          "tablesInvolved": [
+            "PS_ASSET",
+            "PS_LOCATION_TBL"
+          ],
+          "keyword": "SELECT",
+          "riskLevel": "LOW",
+          "rowCount": 13,
+          "rowsAffected": null,
+          "createdAt": "2026-07-30T10:31:21.096Z"
+        }
+      ]
+    }
+  },
+  "savedQueries": [
+    {
+      "id": "979cd3d7-f9f7-4a5d-9e70-419cae8f2af6",
+      "name": "UPDT",
+      "sql": "UPDATE PS_ASSET SET COST = COST + 10000",
+      "description": "",
+      "createdAt": "2026-07-30T06:58:24.744Z",
+      "updatedAt": "2026-07-30T06:58:24.744Z"
+    }
+  ]
+}

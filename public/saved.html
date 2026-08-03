@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saved Queries — PS AM Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <nav class="topbar">
+    <div class="topbar-brand"><span class="dot"></span> PS AM SQL Assistant</div>
+    <div class="topbar-nav">
+      <a href="/index.html">SQL Generator</a>
+      <a href="/impact.html">Impact Analyzer</a>
+      <a href="/saved.html" class="active">Saved Queries</a>
+      <a href="/history.html">History</a>
+    </div>
+  </nav>
+
+  <main class="page">
+    <div class="page-header" style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <div>
+        <h1>Saved Queries</h1>
+        <p>Your reusable query library — saved from the SQL Generator page.</p>
+      </div>
+      <input id="search-input" type="text" placeholder="Search saved queries…" style="max-width:240px;" />
+    </div>
+
+    <div id="saved-list"></div>
+  </main>
+
+  <script src="/saved.js"></script>
+</body>
+</html>

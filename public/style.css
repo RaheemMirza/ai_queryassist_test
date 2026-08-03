@@ -472,6 +472,51 @@ table.results-table tr:hover td {
 .hidden {
   display: none !important;
 }
+/* --- History page --- */
+.history-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.conversation-list {
+  padding: 0 !important;
+  max-height: 65vh;
+  overflow-y: auto;
+}
+
+.conversation-list-item {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--gray-200);
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.conversation-list-item:last-child {
+  border-bottom: none;
+}
+
+.conversation-list-item:hover {
+  background: var(--gray-50);
+}
+
+.conversation-list-item.active {
+  background: var(--blue-light);
+}
+
+.history-entry {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 14px;
+}
+
+.history-entry:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
 
 .text-muted {
   color: var(--gray-500);
