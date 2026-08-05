@@ -7,23 +7,20 @@ const { runSelect } = require('../db/database');
 const { previewExecute } = require('../services/queryExecutor');
 const appStore = require('../db/appStore');
 
-const MAX_HISTORY_MESSAGES = 10;
-
-function buildHistoryForAI(conversationId) {
-  const messages = appStore.getConversation(conversationId);
-  const recent = messages.slice(-MAX_HISTORY_MESSAGES);
-
-  return recent.map((m) => {
-    if (m.role === 'user') {
-      return { role: 'user', content: m.content };
-    }
-    if (m.type === 'sql') {
-      return { role: 'assistant', content: `${m.reply || ''}\n\nSQL used: ${m.sql || ''}`.trim() };
-    }
-    return { role: 'assistant', content: m.reply || '' };
-  });
+function truncate(text, maxChars) {
+  if (!text) return '';
+  return text.length > maxChars ? text.slice(0, maxChars) + '… (truncated)' : text;
 }
 
+/**
+ * POST /api/generate-sql
+ * Body: { prompt: string, conversationId: string }
+ *
+ * Each message is sent to the AI on its own, with no conversation history
+ * attached -- this keeps every request small and predictable in size.
+ * Everything is still recorded to the persistent history store so the
+ * History and Saved Queries pages keep working normally.
+ */
 router.post('/generate-sql', async (req, res) => {
   try {
     const { prompt, conversationId } = req.body;
@@ -34,17 +31,16 @@ router.post('/generate-sql', async (req, res) => {
       return res.status(422).json({ success: false, error: 'Missing conversationId.' });
     }
 
-    const historyForAI = buildHistoryForAI(conversationId);
+    appStore.addMessage(conversationId, { role: 'user', content: truncate(prompt.trim(), 1000) });
 
-    appStore.addMessage(conversationId, { role: 'user', content: prompt.trim() });
-
-    const result = await handleUserMessage(prompt.trim(), historyForAI);
+    const result = await handleUserMessage(prompt.trim());
 
     if (result.type === 'chat') {
-      appStore.addMessage(conversationId, { role: 'assistant', type: 'chat', reply: result.reply });
+      appStore.addMessage(conversationId, { role: 'assistant', type: 'chat', reply: truncate(result.reply, 500) });
       return res.json({ success: true, data: { type: 'chat', reply: result.reply } });
     }
 
+    // type === 'sql'
     const classification = classifyStatement(result.sql);
 
     let rowEstimate = null;
@@ -63,9 +59,9 @@ router.post('/generate-sql', async (req, res) => {
     appStore.addMessage(conversationId, {
       role: 'assistant',
       type: 'sql',
-      reply: result.reply,
-      sql: result.sql,
-      explanation: result.explanation,
+      reply: truncate(result.reply, 400),
+      sql: truncate(result.sql, 1000),
+      explanation: truncate(result.explanation, 800),
       confidenceScore: result.confidenceScore,
       tablesInvolved: result.tablesInvolved,
       keyword: classification.keyword,
@@ -81,6 +77,11 @@ router.post('/generate-sql', async (req, res) => {
   }
 });
 
+/**
+ * POST /api/run-query
+ * Body: { sql: string }
+ * Re-runs a statement (e.g. after hand-editing it in the browser).
+ */
 router.post('/run-query', (req, res) => {
   const { sql } = req.body;
   const execution = previewExecute(sql);

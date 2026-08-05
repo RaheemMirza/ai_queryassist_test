@@ -27,8 +27,8 @@ app.use((err, _req, res, _next) => {
 });
 
 async function start() {
-  if (!process.env.GITHUB_MODELS_TOKEN) {
-    console.warn('⚠️  GITHUB_MODELS_TOKEN is not set in .env — SQL generation will fail until you add one.');
+  if (!process.env.AI_API_KEY) {
+    console.warn('⚠️  AI_API_KEY is not set in .env — SQL generation will fail until you add one.');
   }
 
   console.log('Building demo database (schemaDefinition.js + seedData.js)...');

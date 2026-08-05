@@ -1,24 +1,32 @@
 const { tables } = require('../db/schemaDefinition');
 
 /**
- * Builds a plain-text schema description for the AI prompt, generated
- * directly from schemaDefinition.js so it can never drift out of sync
- * with the actual database structure.
+ * Builds a compact, plain-text schema description for the AI prompt.
+ *
+ * Deliberately simple: this reads ONLY from schemaDefinition.js (a plain
+ * JS object already in memory) and does not query the database at all.
+ * That keeps this fast, predictable, and small every single time — no
+ * risk of it silently growing based on how much data happens to be in the
+ * database right now.
  */
 function buildSchemaContext() {
   const lines = [];
 
   for (const [tableName, tableDef] of Object.entries(tables)) {
-    lines.push(`Table: ${tableName}`);
-    lines.push(`  Description: ${tableDef.description}`);
-    for (const [column, type] of Object.entries(tableDef.columns)) {
-      const pkLabel = column === tableDef.primaryKey ? ' (PRIMARY KEY)' : '';
-      lines.push(`  - ${column} ${type}${pkLabel}`);
+    const columnList = Object.entries(tableDef.columns)
+      .map(([col, type]) => (col === tableDef.primaryKey ? `${col}(PK)` : col))
+      .join(', ');
+
+    lines.push(`${tableName}: ${columnList}`);
+
+    if (tableDef.knownValues) {
+      for (const [column, values] of Object.entries(tableDef.knownValues)) {
+        lines.push(`  ${tableName}.${column} real values: ${values.join(', ')}`);
+      }
     }
-    lines.push('');
   }
 
-  return lines.join('\n').trim();
+  return lines.join('\n');
 }
 
 module.exports = { buildSchemaContext };

@@ -10,17 +10,23 @@
 </head>
 <body>
 
-  <div class="topbar-nav">
+  <nav class="topbar">
+    <div class="topbar-brand"><span class="dot"></span> PS AM SQL Assistant</div>
+    <div class="topbar-nav">
       <a href="/index.html">SQL Generator</a>
       <a href="/impact.html" class="active">Impact Analyzer</a>
       <a href="/saved.html">Saved Queries</a>
       <a href="/history.html">History</a>
     </div>
+  </nav>
 
   <main class="page">
-    <div class="page-header">
-      <h1>Impact Analyzer</h1>
-      <p>Paste one or more SQL statements. Every statement runs inside a transaction that is always rolled back — nothing is ever permanently changed.</p>
+    <div class="page-header" style="display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap;">
+      <div>
+        <h1>Impact Analyzer</h1>
+        <p>Paste one or more SQL statements. Every statement runs inside a transaction that is always rolled back — nothing is ever permanently changed. Past analyses stay here across visits to this page.</p>
+      </div>
+      <button id="clear-history-btn" type="button" class="btn btn-secondary">Clear history</button>
     </div>
 
     <div class="card">
@@ -31,7 +37,7 @@
           <span id="analyze-spinner" class="spinner hidden"></span>
           Analyze impact
         </button>
-        <button id="clear-btn" class="btn btn-secondary">Clear</button>
+        <button id="clear-btn" class="btn btn-secondary">Clear input</button>
       </div>
       <div class="callout callout-info">
         This is a sandbox: SELECT, INSERT, UPDATE, DELETE — even DROP or ALTER — can all be pasted here safely.
@@ -40,7 +46,7 @@
       </div>
     </div>
 
-    <div id="analysis-result"></div>
+    <div id="analysis-result" class="chat-thread"></div>
   </main>
 
   <script src="/impact.js"></script>

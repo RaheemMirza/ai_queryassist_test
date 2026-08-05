@@ -136,16 +136,234 @@
           "createdAt": "2026-07-30T10:31:21.096Z"
         }
       ]
+    },
+    "7778a33a-aab0-43e8-82da-5d9341595160": {
+      "createdAt": "2026-08-03T09:27:56.091Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "show inservice assets",
+          "createdAt": "2026-08-03T09:27:56.091Z"
+        },
+        {
+          "role": "user",
+          "content": "show inservice assets",
+          "createdAt": "2026-08-03T09:32:13.503Z"
+        },
+        {
+          "role": "user",
+          "content": "show inservice assets",
+          "createdAt": "2026-08-05T04:47:44.452Z"
+        }
+      ]
+    },
+    "b91855b8-1ad4-4876-8ad5-3555871511a6": {
+      "createdAt": "2026-08-05T04:50:44.708Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T04:50:44.708Z"
+        },
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T04:51:26.362Z"
+        },
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T05:01:12.909Z"
+        },
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T05:01:47.871Z"
+        },
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T05:02:15.424Z"
+        }
+      ]
+    },
+    "34d28c47-8c85-47a5-99aa-73b3e5d93dd5": {
+      "createdAt": "2026-08-05T05:11:44.083Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Show disposed assets this month",
+          "createdAt": "2026-08-05T05:11:44.083Z"
+        },
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T05:15:12.749Z"
+        }
+      ]
+    },
+    "fa39d753-6669-4103-9905-cfe453f65c36": {
+      "createdAt": "2026-08-05T05:21:48.335Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T05:21:48.335Z"
+        }
+      ]
+    },
+    "303abeff-933e-48c0-8e99-a07fafd1768f": {
+      "createdAt": "2026-08-05T05:35:30.723Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Show disposed assets this month",
+          "createdAt": "2026-08-05T05:35:30.723Z"
+        },
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T05:35:37.574Z"
+        },
+        {
+          "role": "assistant",
+          "type": "chat",
+          "reply": "Hello! How can I help you today?",
+          "createdAt": "2026-08-05T05:35:38.096Z"
+        },
+        {
+          "role": "user",
+          "content": "give in service assets",
+          "createdAt": "2026-08-05T05:35:47.562Z"
+        },
+        {
+          "role": "assistant",
+          "type": "chat",
+          "reply": "Here are the in-service assets",
+          "createdAt": "2026-08-05T05:35:48.178Z"
+        },
+        {
+          "role": "user",
+          "content": "hi",
+          "createdAt": "2026-08-05T05:38:28.187Z"
+        },
+        {
+          "role": "assistant",
+          "type": "chat",
+          "reply": "Hello! How can I help you with your PeopleSoft Asset Management demo today?",
+          "createdAt": "2026-08-05T05:38:28.780Z"
+        },
+        {
+          "role": "user",
+          "content": "show inservice assets",
+          "createdAt": "2026-08-05T05:38:38.553Z"
+        },
+        {
+          "role": "assistant",
+          "type": "chat",
+          "reply": "In-service assets:",
+          "createdAt": "2026-08-05T05:38:39.178Z"
+        }
+      ]
+    },
+    "9080a326-c8e4-470b-ba23-926832167810": {
+      "createdAt": "2026-08-05T05:38:51.649Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Show all active assets purchased after January 2025",
+          "createdAt": "2026-08-05T05:38:51.649Z"
+        },
+        {
+          "role": "assistant",
+          "type": "chat",
+          "reply": "Here’s the query:",
+          "createdAt": "2026-08-05T05:38:52.382Z"
+        }
+      ]
+    },
+    "9b016729-cd36-434c-b649-af9a38fb45b3": {
+      "createdAt": "2026-08-05T05:42:12.227Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Show all active assets purchased after January 2025",
+          "createdAt": "2026-08-05T05:42:12.227Z"
+        },
+        {
+          "role": "assistant",
+          "type": "sql",
+          "reply": "Here's a query for that.",
+          "sql": "SELECT * FROM PS_ASSET WHERE ASSET_STATUS='IN_SERVICE' AND ACQUISITION_DT>'2025-01-31';",
+          "explanation": "Returns all assets that are currently in service and were acquired after January 31, 2025.",
+          "confidenceScore": 0.7,
+          "tablesInvolved": [
+            "PS_ASSET"
+          ],
+          "keyword": "SELECT",
+          "riskLevel": "LOW",
+          "rowCount": 27,
+          "rowsAffected": null,
+          "createdAt": "2026-08-05T05:42:12.978Z"
+        },
+        {
+          "role": "user",
+          "content": "show inservice assets",
+          "createdAt": "2026-08-05T05:42:35.762Z"
+        },
+        {
+          "role": "assistant",
+          "type": "sql",
+          "reply": "Here's a query for that.",
+          "sql": "SELECT * FROM PS_ASSET WHERE ASSET_STATUS = 'IN_SERVICE';",
+          "explanation": "Returns all assets currently in service",
+          "confidenceScore": 0.7,
+          "tablesInvolved": [
+            "PS_ASSET"
+          ],
+          "keyword": "SELECT",
+          "riskLevel": "LOW",
+          "rowCount": 54,
+          "rowsAffected": null,
+          "createdAt": "2026-08-05T05:42:36.443Z"
+        }
+      ]
+    },
+    "930df60d-c610-41f1-b39b-12f5a044b628": {
+      "createdAt": "2026-08-05T05:43:37.691Z",
+      "messages": [
+        {
+          "role": "user",
+          "content": "List assets costing more than 20000",
+          "createdAt": "2026-08-05T05:43:37.691Z"
+        },
+        {
+          "role": "assistant",
+          "type": "sql",
+          "reply": "Here is a query that lists all assets costing more than 20000.",
+          "sql": "SELECT * FROM PS_ASSET WHERE COST > 20000;",
+          "explanation": "Retrieves all columns for assets whose COST exceeds 20000.",
+          "confidenceScore": 0.7,
+          "tablesInvolved": [
+            "PS_ASSET"
+          ],
+          "keyword": "SELECT",
+          "riskLevel": "LOW",
+          "rowCount": 35,
+          "rowsAffected": null,
+          "createdAt": "2026-08-05T05:43:38.304Z"
+        }
+      ]
     }
   },
   "savedQueries": [
     {
-      "id": "979cd3d7-f9f7-4a5d-9e70-419cae8f2af6",
-      "name": "UPDT",
-      "sql": "UPDATE PS_ASSET SET COST = COST + 10000",
+      "id": "990ba13d-52be-4ad2-b4b8-bd70168cf125",
+      "name": "cost",
+      "sql": "SELECT * FROM PS_ASSET WHERE COST > 20000;",
       "description": "",
-      "createdAt": "2026-07-30T06:58:24.744Z",
-      "updatedAt": "2026-07-30T06:58:24.744Z"
+      "createdAt": "2026-08-05T05:43:48.557Z",
+      "updatedAt": "2026-08-05T05:43:48.557Z"
     }
   ]
 }

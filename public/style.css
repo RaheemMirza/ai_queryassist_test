@@ -517,7 +517,20 @@ table.results-table tr:hover td {
   margin-bottom: 0;
   padding-bottom: 0;
 }
+/* --- Impact Analyzer: stacked analysis entries --- */
+.analysis-entry {
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--gray-200);
+}
 
+.analysis-entry:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.analysis-entry-header {
+  margin-bottom: 10px;
+}
 .text-muted {
   color: var(--gray-500);
   font-size: 13px;
